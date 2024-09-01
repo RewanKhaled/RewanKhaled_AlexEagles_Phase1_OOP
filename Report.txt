@@ -1,0 +1,70 @@
+                            Report: System Design and Architecture
+1. Design and Architecture of the System
+The system designed is a flight booking and management system incorporating various aspects of travel and services related to it. The architecture is structured using Object-Oriented Programming (OOP) principles to ensure modularity, reusability, and maintainability. The primary components of the system are:
+
+Models: Define the core entities and their interactions.
+Helpers: Provide utility functions to aid in processing data.
+Controllers: (Implied) Manage the flow of data and interactions between models.
+
+Key Components:
+Person: Represents individuals with personal information.
+Employee: A subclass of Person, includes job-related attributes.
+Customer: A subclass of Person, includes travel-related attributes.
+Flight: Represents a flight with details about its schedule, route, and associated airline.
+Gate: Represents a gate at an airport with attributes for location and size.
+Airport: Represents an airport with multiple gates and employees.
+Meal: Represents meal options available on flights.
+Movie: Represents in-flight entertainment.
+Airline: Represents airlines with employees and services (meals, movies).
+Architecture Overview:
+
+Entity Representation: Each class represents a distinct entity with attributes and methods relevant to that entity.
+Inheritance: Used to create specialized versions of entities. For example, Employee and Customer inherit from Person.
+Composition: Classes like Flight and Airline use composition to include instances of other classes (e.g., Meal, Movie, Employee).
+2. How the OOP Concepts are Applied
+ 1. Encapsulation:
+Private Attributes: Attributes such as __firstname, __lastname, __email, and others are encapsulated within classes and accessed/modified via properties. This ensures data integrity and provides controlled access.
+Properties: Used for validation of attribute values and controlled setting/getting of private variables.
+
+ 2. Inheritance:
+Person Class: The base class for Employee and Customer. It provides common attributes and methods for personal information.
+Employee and Customer: Inherit from Person and extend it with additional attributes relevant to their roles.
+
+ 3. Composition:
+Flight Class: Composed of Airline instances and possibly Meal, Movie instances. This reflects a flight's association with an airline and the services it provides.
+Airline Class: Composed of Employee instances and lists of Meal and Movie instances.
+
+ 4. Polymorphism:
+Methods like __str__() in each class provide a string representation of the objects, allowing for consistent and customizable output across different types.
+
+3. Relationships Between Different Classes
+**1. Person:
+Base class for Employee and Customer. Provides common personal attributes like firstname, lastname, birthdate, email, and address.
+
+**2. Employee:
+Inherits from Person.
+Associated with: Airline (represents the airline they work for).
+
+**3. Customer:
+Inherits from Person.
+Has: A list of Flight instances (flights the customer has booked).
+
+**4. Flight:
+Has: Attributes like departure_time, arrival_time, and references to Airline and possibly Meal and Movie instances.
+Associated with: Airline (provides details about the airline operating the flight).
+
+**5. Gate:
+Has: Attributes such as gate_number, location, size, and allowed_passing_people.
+
+**6. Airport:
+Has: A list of Gate and Employee instances.
+Associated with: Can manage multiple Gates and Employees.
+
+**7. Meal and Movie:
+Associated with: Airline (can be provided as services on flights).
+
+**8. Airline:
+Has: A list of Employee, Meal, and Movie instances.
+Associated with: Flight (flights are operated by airlines).
+
+This architecture ensures that the system is well-organized, with clear responsibilities for each class, making it easier to manage and extend.
